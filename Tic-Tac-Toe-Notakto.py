@@ -166,17 +166,19 @@ def main():
     player = 1
     singlePlayer=input("Enter 1 for single player, 0 for multiplayer: ")
     singlePlayer=int(singlePlayer)
-
+   
     #The board is considered in the form of a single dimentional array.
     #Players move 1
     board=[0,0,0,0,0,0,0,0,0]
-
+    breakFlag = False
     if(singlePlayer):
         print("Computer : O Vs. You : X")
         player= input("Enter to play 1(st) or 2(nd) :")
+        whoPlayedFirst =  int(player)%2
         player = int(player)%2
         for i in range (0,9):
             if(analyzeBoard2(board)!=0):
+                breakFlag = True
                 break
             if((i+player)%2==0):
                 print("Computer Turn")
@@ -212,7 +214,7 @@ def main():
 
     x=analyzeBoard2(board)
     if (singlePlayer):
-        if(x == 1):
+        if(x == 1 and breakFlag) :
             print("User wins")
         else:
             print("Computer wins")
